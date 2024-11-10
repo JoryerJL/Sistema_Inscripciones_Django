@@ -48,7 +48,7 @@
             <a class="btn btn-outline-danger" href="{% url 'website:logout_view' %}" style="margin-right: 5px"><i class="fa-solid fa-door-open"></i> Cerrar Sesión</a>
             {% else %}
             <a class="btn btn-outline-success" href="{% url 'login' %}" style="margin-right: 5px"><i class="fa-solid fa-right-from-bracket"></i> Iniciar Sesión</a>
-            <a class="btn btn-outline-primary" ><i class="fa-solid fa-user-plus"></i> Registrarse</a>
+            <a class="btn btn-outline-primary" href="{% url 'website:registro_alumno' %}"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
             {% endif %}
         </div>
     </div>
