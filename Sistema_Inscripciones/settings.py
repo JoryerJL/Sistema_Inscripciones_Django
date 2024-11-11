@@ -22,7 +22,8 @@ THIRD_PARTY_APPS = [
 
 CUSTOM_APPS = [
 'website.apps.WebsiteConfig',
-'usuarios.apps.UsuariosConfig'
+'usuarios.apps.UsuariosConfig',
+'dashboard.apps.DashboardConfig'
 
 ]
 
