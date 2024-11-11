@@ -38,17 +38,18 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Quienes somos</a>
+                    <a class="nav-link" aria-current="page" href="#">Quienes somos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contacto</a>
                 </li>
             </ul>
             {% if request.user.is_authenticated %}
-            <a class="btn btn-outline-danger" href="{% url 'website:logout_view' %}" style="margin-right: 5px"><i class="fa-solid fa-door-open"></i> Cerrar Sesión</a>
+                <a class="btn btn-outline-primary" href="{% url 'usuarios:perfil_alumno' %}" style="margin-right: 5px"><i class="fa-solid fa-circle-user"></i> Perfil</a>
+                <a class="btn btn-outline-danger" href="{% url 'website:logout_view' %}" style="margin-right: 5px"><i class="fa-solid fa-door-open"></i> Cerrar Sesión</a>
             {% else %}
-            <a class="btn btn-outline-success" href="{% url 'login' %}" style="margin-right: 5px"><i class="fa-solid fa-right-from-bracket"></i> Iniciar Sesión</a>
-            <a class="btn btn-outline-primary" href="{% url 'website:registro_alumno' %}"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
+                <a class="btn btn-outline-success" href="{% url 'login' %}" style="margin-right: 5px"><i class="fa-solid fa-right-from-bracket"></i> Iniciar Sesión</a>
+                <a class="btn btn-outline-primary" href="{% url 'website:registro_alumno' %}"><i class="fa-solid fa-user-plus"></i> Registrarse</a>
             {% endif %}
         </div>
     </div>

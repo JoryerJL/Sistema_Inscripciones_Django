@@ -14,14 +14,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
 ]
 
 THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-'website.apps.WebsiteConfig'
+'website.apps.WebsiteConfig',
+'usuarios.apps.UsuariosConfig'
+
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + CUSTOM_APPS
