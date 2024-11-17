@@ -21,10 +21,10 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-'website.apps.WebsiteConfig',
-'usuarios.apps.UsuariosConfig',
-'dashboard.apps.DashboardConfig'
-
+    'website.apps.WebsiteConfig',
+    'usuarios.apps.UsuariosConfig',
+    'dashboard.apps.DashboardConfig',
+    'cursos.apps.CursosConfig'
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + CUSTOM_APPS
