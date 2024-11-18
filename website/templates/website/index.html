@@ -5,21 +5,28 @@
             <div class="col">
                 <h1>¡Bienvenido!</h1>
                 <h2>Cursos Activos</h2>
-
-                <div class="card" style="width: 18rem;">
-                    <img src="https://placehold.co/600x400" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div style="margin-bottom: 10px">
-                        <span class="badge text-bg-success text-wrap">Programación</span>
-                        <span class="badge text-bg-success text-wrap">Abierto</span>
+                {% for course in  course_list %}
+                    <div class="card" style="width: 18rem;">
+                        <a href="{% url 'website:detail_course' course.pk %}">
+                            <img src="https://placehold.co/600x400" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <div style="margin-bottom: 10px">
+                                <span class="badge text-bg-success text-wrap">{{ course.curso.categoria }}</span>
+                                <span class="badge text-bg-success text-wrap">{{ course.estatus }}</span>
+                                <span class="badge text-bg-danger text-wrap">Sede: {{ course.get_sede_display }}</span>
+                            </div>
+                            <span class="text-primary float-end">$ {{ course.precio }}</span>
+                            <h5 class="card-title">{{ course.curso }}</h5>
+                            <p class="card-text">{{ course.instructor }}</p>
+                            <a href="{% url 'website:detail_course' course.pk %}" class="btn btn-primary"><i
+                                    class="fa-solid fa-circle-info"></i> Ver</a>
+                            <a href="{% url 'website:inscripcion_course' %}" class="btn btn-warning"><i
+                                    class="fa-solid fa-book"></i> Inscribirse</a>
                         </div>
-                        <span class="text-primary float-end">$99.00</span>
-                        <h5 class="card-title">Curso Python</h5>
-                        <p class="card-text">Joryer JL</p>
-                        <a href="{% url 'website:detail_course' %}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i> Ver</a>
-                        <a href="{% url 'website:inscripcion_course' %}" class="btn btn-warning"><i class="fa-solid fa-book"></i> Inscribirse</a>
                     </div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
     </div>

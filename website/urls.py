@@ -7,7 +7,7 @@ app_name = 'website'
 
 urlpatterns = [
     path('', index_website, name='index'),
-    path('detail_course/', detail_course, name='detail_course'),
+    path('detalle-curso/<int:pk>/', detail_course, name='detail_course'),
     path('logout/', logout_view, name='logout_view'),
     path('registro_alumno/', registro_alumno, name='registro_alumno'),
     path('inscripcion/', inscripcion_alumno, name='inscripcion_course'),

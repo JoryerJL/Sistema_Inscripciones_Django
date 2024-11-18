@@ -5,14 +5,25 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .forms import *
+from cursos.models import *
 
 
 # Create your views here.
 def index_website(request):
-    return render(request, 'website/index.html')
+    course_list = CursoOfertado.objects.filter(estatus=1)
+    context = {
+        'course_list': course_list,
+        'title' : 'Academy'
+    }
+    return render(request, 'website/index.html', context)
 
-def detail_course(request):
-    return render(request, 'website/detail_course.html')
+def detail_course(request, pk):
+    course = CursoOfertado.objects.get(pk=1)
+    context = {
+        'course': course,
+        'title' : course.curso.titulo
+    }
+    return render(request, 'website/detail_course.html', context)
 
 def registro_alumno(request):
     form = UserCreationForm()
@@ -24,7 +35,8 @@ def registro_alumno(request):
         else:
             print(form.errors)
     context = {
-        'form': form
+        'form': form,
+        'title' : 'Registro de Alumno'
     }
     return render(request, 'registration/registro_alumno.html', context)
 def logout_view(request):
