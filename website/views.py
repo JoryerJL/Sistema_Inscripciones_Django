@@ -49,6 +49,14 @@ def preinscripcion_alumno(request, pk):
     form = PreInscripcionAlumnoCursoModelForm()
     if request.method == "POST":
         form = PreInscripcionAlumnoCursoModelForm(request.POST, request.FILES)
+        if form.is_valid():
+            curso_temp = form.save(commit=False)
+            curso_temp.prospecto = request.user
+            curso_temp.curso = course
+            curso_temp.estatus_id = 1
+            curso_temp.save()
+            print('Preinscripcion guardada')
+            return redirect('website:index')
 
     context = {
         'form': form,

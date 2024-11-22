@@ -92,4 +92,4 @@ class PreinscripcionCurso (models.Model) :
         verbose_name_plural = 'Preinscripciones'
 
     def __str__(self):
-        return f'{self.prospecto.first_name} - {self.curso.curso.titulo}'
+        return f'{self.prospecto.username} - {self.curso.curso.titulo} - {self.estatus} - {self.fecha_solicitud.strftime("%Y-%m-%d")}'
