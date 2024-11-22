@@ -4,13 +4,15 @@
         <div class="row">
             <div class="col">
                 <h1>Requisitos</h1>
+                <h3>Pre-Inscripcion al curso de {{ course.curso.titulo }}</h3>
+                <p>Favor de adjuntar los siguientes documentos, para completar su registro</p>
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <table class="table">
                         {{ form.as_table }}
                         <tr>
                             <td colspan="2">
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-arrow-right-to-bracket"></i> Inscribirse</button>
+                                <button type="submit" class="btn btn-primary" value="Preinscribirme"><i class="fa-solid fa-arrow-right-to-bracket"></i> Inscribirse</button>
                             </td>
                     </table>
                 </form>

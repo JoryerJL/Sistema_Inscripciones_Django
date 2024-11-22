@@ -3,6 +3,7 @@ from lib2to3.fixes.fix_input import context
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import title
 from django.views.generic import TemplateView
 from .forms import *
 from cursos.models import *
@@ -43,13 +44,16 @@ def logout_view(request):
     logout(request)
     return redirect('website:index')
 
-def inscripcion_alumno(request):
-    form = InscripcionAlumnoCursoForm()
+def preinscripcion_alumno(request, pk):
+    course = CursoOfertado.objects.get(pk=pk)
+    form = PreInscripcionAlumnoCursoModelForm()
     if request.method == "POST":
-        form = InscripcionAlumnoCursoForm(request.POST, request.FILES)
+        form = PreInscripcionAlumnoCursoModelForm(request.POST, request.FILES)
 
     context = {
-        'form': form
+        'form': form,
+        'title': 'Pre-Inscripcion - ' + course.curso.titulo,
+        'course': course
     }
     return render(request, 'website/inscripcion_course.html', context)
 
