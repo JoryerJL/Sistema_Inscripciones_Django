@@ -4,7 +4,7 @@
         <div class="col">
             <h1>Preinscripciones</h1>
             <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nueva Preinscripción</a>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -23,7 +23,11 @@
                         <td>{{ preinscripcion.prospecto }}</td>
                         <td>{{ preinscripcion.fecha_solicitud|date:"Y-m-d" }}</td>
                         <td>{{ preinscripcion.estatus }}</td>
-                        <td></td>
+                        <td>
+                            <a href="#" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></a>
+                            <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-square-check"></i></a>
+                            <a href="#" class="btn btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></a>
+                        </td>
                         <td>
                         </td>
                     </tr>
