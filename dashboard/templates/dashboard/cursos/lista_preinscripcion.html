@@ -1,0 +1,35 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h1>Preinscripciones</h1>
+            <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nueva Preinscripción</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Curso</th>
+                    <th>Prospecto</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Estatus</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for preinscripcion in preinscripciones %}
+                    <tr>
+                        <td>{{ preinscripcion.id }}</td>
+                        <td>{{ preinscripcion.curso.curso.titulo }}</td>
+                        <td>{{ preinscripcion.prospecto }}</td>
+                        <td>{{ preinscripcion.fecha_solicitud|date:"Y-m-d" }}</td>
+                        <td>{{ preinscripcion.estatus }}</td>
+                        <td></td>
+                        <td>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

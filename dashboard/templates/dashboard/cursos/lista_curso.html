@@ -13,6 +13,17 @@
                     <th>Opciones</th>
                 </tr>
                 </thead>
+                <tbody>
+                {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.id }}</td>
+                        <td>{{ curso.curso.titulo }}</td>
+                        <td>{{ curso.estatus }}</td>
+                        <td>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
