@@ -21,7 +21,7 @@
                         <td>{{ curso.titulo }}</td>
                         <td>{{ curso.categoria }}</td>
                         <td>
-                            <a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-outline-primary" href="{% url 'dashboard:update_curso' curso.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a class="btn btn-outline-danger" href="{% url 'dashboard:delete_curso' curso.pk %}"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
                         <td>{{ cursoOfertado.fecha_inicio|date:"d/m/Y" }}</td>
                         <td>{{ cursoOfertado.estatus }}</td>
                         <td>
-                            <a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-outline-primary" href="{% url 'dashboard:update_curso_ofertado' cursoOfertado.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a class="btn btn-outline-danger" href="{% url 'dashboard:delete_curso_ofertado' cursoOfertado.pk %}"><i class="fa-solid fa-trash"></i></a>
                             <a class="btn btn-outline-warning" href="{% url 'website:detail_course' cursoOfertado.pk %}"><i
                                     class="fa-solid fa-circle-info"></i></a>

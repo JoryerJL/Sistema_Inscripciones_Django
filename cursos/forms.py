@@ -27,3 +27,12 @@ class CursoOfertadoModelForm(forms.ModelForm):
         widgets = {
             'fecha_inicio': forms.DateInput(attrs={'type': 'date'})
         }
+
+
+class PreinscripcionCursoModelForm(forms.ModelForm):
+    class Meta:
+        model = PreinscripcionCurso
+        fields = [
+            'estatus',
+            'nota'
+        ]

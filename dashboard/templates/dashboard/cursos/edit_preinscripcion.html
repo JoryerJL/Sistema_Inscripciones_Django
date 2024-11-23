@@ -1,0 +1,25 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% block content %}
+    <div class="row">
+        <h1>Editar Preinscripcion {{ preinscripcion.prospecto.username }} - {{ preinscripcion.curso.curso.titulo }}</h1>
+        <p>Curso : {{ preinscripcion.curso.curso.titulo }}</p>
+        <p>Prospecto : {{ preinscripcion.prospecto.username }}</p>
+        <p>Comprobante de domicilio : <a href="{{ preinscripcion.comprobante_domicilio.url }}"> Ver más</a></p>
+        <p>Curp : <a href="{{ preinscripcion.curp.url }}"> Ver más </a></p>
+        <p>Identificacion oficial : <a href="{{ preinscripcion.identificacion_oficial.url }}"> Ver más</a></p>
+        <p>Comprobante de pago : <a href="{{ preinscripcion.comprobante_pago.url }}">Ver más</a></p>
+        <p>Comprobante de estudios : <a href="{{ preinscripcion.comprobante_estudios.url }}"> Ver más</a></p>
+        <p>Acta de nacimiento : <a href="{{ preinscripcion.acta_nacimiento.url}}"> Ver más</a></p>
+        <p>Fecha de solicitud: {{ preinscripcion.fecha_solicitud }}</p>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-hover">
+            {{ form.as_table }}
+            <tr>
+                <td><input type="submit" value="Guardar" class="btn btn-outline-success"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+{% endblock %}
