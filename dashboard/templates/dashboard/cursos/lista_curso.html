@@ -1,15 +1,16 @@
 {% extends 'dashboard/base_dashboard.html' %}
 {% block content %}
     <div class="row">
+        <h1>Cursos</h1>
         <div class="col">
-            <h1>Cursos</h1>
-            <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
+            <h2>Lista de Cursos Generales</h2>
+            <a href="{% url 'dashboard:create_curso' %}" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Curso</th>
-                    <th>Estatus</th>
+                    <th>Categoria</th>
                     <th>Opciones</th>
                 </tr>
                 </thead>
@@ -17,12 +18,48 @@
                 {% for curso in cursos %}
                     <tr>
                         <td>{{ curso.id }}</td>
-                        <td>{{ curso.curso.titulo }}</td>
-                        <td>{{ curso.estatus }}</td>
+                        <td>{{ curso.titulo }}</td>
+                        <td>{{ curso.categoria }}</td>
                         <td>
                             <a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a class="btn btn-outline-danger" href="#"><i class="fa-solid fa-trash"></i></a>
-                            <a class="btn btn-outline-warning" href="{% url 'website:detail_course' curso.pk %}"><i class="fa-solid fa-circle-info"></i></a>
+                            <a class="btn btn-outline-danger" href="{% url 'dashboard:delete_curso' curso.pk %}"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Lista de Cursos Ofertados</h2>
+            <a href="{% url 'dashboard:create_curso_ofertado' %}" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ofertar Nuevo Curso</a>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Curso</th>
+                    <th>Instructor</th>
+                    <th>Sede</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Estatus</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cursoOfertado in cursosOfertados %}
+                    <tr>
+                        <td>{{ cursoOfertado.id }}</td>
+                        <td>{{ cursoOfertado.curso.titulo }}</td>
+                        <td>{{ cursoOfertado.instructor }}</td>
+                        <td>{{ cursoOfertado.get_sede_display }}</td>
+                        <td>{{ cursoOfertado.fecha_inicio|date:"d/m/Y" }}</td>
+                        <td>{{ cursoOfertado.estatus }}</td>
+                        <td>
+                            <a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-outline-danger" href="{% url 'dashboard:delete_curso_ofertado' cursoOfertado.pk %}"><i class="fa-solid fa-trash"></i></a>
+                            <a class="btn btn-outline-warning" href="{% url 'website:detail_course' cursoOfertado.pk %}"><i
+                                    class="fa-solid fa-circle-info"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
