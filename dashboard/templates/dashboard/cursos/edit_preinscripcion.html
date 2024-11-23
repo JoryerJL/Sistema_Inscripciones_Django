@@ -2,6 +2,7 @@
 {% block content %}
     <div class="row">
         <h1>Editar Preinscripcion {{ preinscripcion.prospecto.username }} - {{ preinscripcion.curso.curso.titulo }}</h1>
+        <a class="btn btn-outline-warning" href="{% url 'dashboard:lista_preinscripcion' %}" style="max-width: 10%"><i class="fa-solid fa-left-long"></i> Regresar</a>
         <p>Curso : {{ preinscripcion.curso.curso.titulo }}</p>
         <p>Prospecto : {{ preinscripcion.prospecto.username }}</p>
         <p>Comprobante de domicilio : <a href="{{ preinscripcion.comprobante_domicilio.url }}"> Ver más</a></p>

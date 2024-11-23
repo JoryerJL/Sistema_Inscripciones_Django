@@ -3,6 +3,8 @@
     <div class="row">
         <div class="col">
             <h1>Crear Curso</h1>
+            <a class="btn btn-outline-warning" href="{% url 'dashboard:lista_curso' %}" style="max-width: 12%"><i class="fa-solid fa-left-long"></i> Regresar</a>
+
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table class="table">
