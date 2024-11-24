@@ -21,3 +21,16 @@ class PreInscripcionAlumnoCursoModelForm(forms.ModelForm):
             'acta_nacimiento'
         ]
 
+
+class PreInscripcionAlumnoCursoModelFormValidado(forms.ModelForm):
+    class Meta:
+        model = PreinscripcionCurso
+        fields  = [
+            'comprobante_domicilio',
+            'curp',
+            'identificacion_oficial',
+            'comprobante_pago',
+            'comprobante_estudios',
+            'acta_nacimiento',
+            'nota'
+        ]

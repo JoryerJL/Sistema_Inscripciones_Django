@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout_view'),
     path('registro_alumno/', registro_alumno, name='registro_alumno'),
     path('pre-inscripcion/<int:pk>', preinscripcion_alumno, name='pre-inscripcion_course'),
+    path('pre-inscripcion/edit/<int:pk>', edit_preinscripcion, name='edit-pre-inscripcion_course'),
     path('quienes-somos/', TemplateView.as_view(template_name='website/quienes_somos.html'), name='quienes_somos'),
     path('contacto/', TemplateView.as_view(template_name='website/contacto.html'), name='contacto')
 ]

@@ -5,9 +5,12 @@
             <div class="col">
                 <span class="badge text-bg-success text-wrap">{{ course.curso.categoria }}</span>
                 <h1>{{ course.curso }}</h1>
-                <div style="margin-top: 10px; margin-bottom: 10px">
-                    <a href="{% url 'website:pre-inscripcion_course' course.pk %}" class="btn btn-warning"><i class="fa-solid fa-book"></i> Inscribirse</a>
-                </div>
+                {% if inscrito == False %}
+                    <div style="margin-top: 10px; margin-bottom: 10px">
+                        <a href="{% url 'website:pre-inscripcion_course' course.pk %}" class="btn btn-warning"><i
+                                class="fa-solid fa-book"></i> Inscribirse</a>
+                    </div>
+                {% endif %}
                 <img src="https://placehold.co/1000x500/png">
                 <p style="margin-top: 10px"> <i class="fa-brands fa-google-scholar"></i> Instructor : {{ course.instructor}}</p>
                 <p class="btn btn-outline-success" ><i class="fa-solid fa-money-bills"></i> {{ course.precio }}</p>

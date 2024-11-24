@@ -19,8 +19,14 @@ def index_website(request):
     return render(request, 'website/index.html', context)
 
 def detail_course(request, pk):
+    curso_ofertado = CursoOfertado.objects.get(pk=pk)
+    inscrito = False
+    if PreinscripcionCurso.objects.filter(prospecto=request.user, curso=curso_ofertado).exists():
+        inscrito = True
+
     course = CursoOfertado.objects.get(pk=1)
     context = {
+        'inscrito': inscrito,
         'course': course,
         'title' : course.curso.titulo
     }
@@ -64,6 +70,22 @@ def preinscripcion_alumno(request, pk):
         'course': course
     }
     return render(request, 'website/inscripcion_course.html', context)
+def edit_preinscripcion(request, pk):
+    preinscripcion = PreinscripcionCurso.objects.get(pk=pk)
+    form = PreInscripcionAlumnoCursoModelFormValidado(instance=preinscripcion)
+    if request.method == "POST":
+        form = PreInscripcionAlumnoCursoModelFormValidado(request.POST, request.FILES, instance=preinscripcion)
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios:perfil_alumno')
+        else:
+            print(form.errors)
+    context = {
+        'form': form,
+        'title': 'Editar Pre-Inscripcion - ' + preinscripcion.curso.curso.titulo,
+        'preinscripcion': preinscripcion
+    }
+    return render(request, 'website/edit_preinscripcion_course.html', context)
 
 class InscripcionAlumno(TemplateView):
     template_name = 'website/inscripcion_course.html'

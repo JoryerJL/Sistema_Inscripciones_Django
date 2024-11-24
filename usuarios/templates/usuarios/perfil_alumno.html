@@ -59,8 +59,13 @@
                                     </div>
                                     <h5 class="card-title">{{ curso.curso.curso }}</h5>
                                     <p class="card-text">{{ curso.curso.instructor }}</p>
-                                    <a href="{% url 'website:detail_course' curso.pk %}" class="btn btn-primary"><i
+                                    {% if curso.estatus.nombre == 'Aceptado' %}
+                                        <a href="{% url 'website:detail_course' curso.pk %}" class="btn btn-primary"><i
                                             class="fa-solid fa-circle-info"></i> Ver</a>
+                                    {% else %}
+                                        <a href="{% url 'website:edit-pre-inscripcion_course' curso.pk %}" class="btn btn-primary"><i
+                                            class="fa-solid fa-circle-info"></i> Ver Solicitud</a>
+                                    {% endif  %}
                                 </div>
                             </div>
                         </div>
