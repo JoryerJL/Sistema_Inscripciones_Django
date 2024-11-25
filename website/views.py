@@ -1,7 +1,9 @@
 from lib2to3.fixes.fix_input import context
+from os import login_tty
 from pyexpat.errors import messages
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import title
@@ -22,8 +24,9 @@ def index_website(request):
 def detail_course(request, pk):
     curso_ofertado = CursoOfertado.objects.get(pk=pk)
     inscrito = False
-    if PreinscripcionCurso.objects.filter(prospecto=request.user, curso=curso_ofertado).exists():
-        inscrito = True
+    if not request.user.is_anonymous:
+        if PreinscripcionCurso.objects.filter(prospecto=request.user, curso=curso_ofertado).exists():
+            inscrito = True
 
     context = {
         'inscrito': inscrito,
@@ -50,6 +53,7 @@ def logout_view(request):
     logout(request)
     return redirect('website:index')
 
+@login_required
 def preinscripcion_alumno(request, pk):
     course = CursoOfertado.objects.get(pk=pk)
     form = PreInscripcionAlumnoCursoModelForm()
