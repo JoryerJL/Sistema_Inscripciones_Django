@@ -5,6 +5,13 @@
             <div class="col">
                 <h1>¡Bienvenido!</h1>
                 <h2>Cursos Activos</h2>
+            {% if  request.user.first_name and request.user.last_name and request.user.email  %}
+            {% else %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Completa tus datos en <a href="{% url 'usuarios:perfil_alumno' %}">perfil</a>, para poder pre-inscribirte a un curso.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
                 <div class="row">
                     {% for course in  course_list %}
                         <div class="col-12 col-md-6 col-lg-4">

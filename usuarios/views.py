@@ -2,6 +2,8 @@ from lib2to3.fixes.fix_input import context
 from pyexpat.errors import messages
 
 from django.shortcuts import render
+from django.template.defaultfilters import title
+
 from cursos.models import *
 from .forms import *
 
@@ -22,7 +24,8 @@ def perfil_alumno(request):
         'cursos': cursos,
         'form': form,
         'messageSuccess': messageSuccess,
-        'messageError': messageError
+        'messageError': messageError,
+        'title' : 'Perfil de Alumno'
 
     }
     return render(request, 'usuarios/perfil_alumno.html', context)

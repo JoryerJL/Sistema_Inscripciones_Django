@@ -6,9 +6,18 @@
                 <span class="badge text-bg-success text-wrap">{{ course.curso.categoria }}</span>
                 <h1>{{ course.curso }}</h1>
                 {% if inscrito == False %}
-                    <div style="margin-top: 10px; margin-bottom: 10px">
+                    {% if  request.user.first_name and request.user.last_name and request.user.email %}
+                        <div style="margin-top: 10px; margin-bottom: 10px">
                         <a href="{% url 'website:pre-inscripcion_course' course.pk %}" class="btn btn-warning"><i
                                 class="fa-solid fa-book"></i> Inscribirse</a>
+                    {% else %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Debes completar tus datos en <a
+                                href="{% url 'usuarios:perfil_alumno' %}">perfil</a>, para poder pre-inscribirte a un
+                            curso.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
                     </div>
                     {% else %}
                     <div style="margin-top: 10px; margin-bottom: 10px">
