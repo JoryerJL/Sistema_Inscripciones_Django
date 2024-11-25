@@ -117,12 +117,20 @@ def edit_preinscripcion(request, pk):
 
 def aceptar_preinscripcion(request, pk):
     preinscripcion = PreinscripcionCurso.objects.get(pk = pk)
+    course = preinscripcion.curso
     preinscripcion.estatus = EstatusPreinscripcion.objects.get(pk=2)
     preinscripcion.save()
+    if PreinscripcionCurso.objects.filter(curso=course, estatus_id=2).count() >= course.capacidad:
+        course.estatus = EstatusCursoOfertado.objects.get(pk=4)
+        course.save()
     return redirect('dashboard:lista_preinscripcion')
 
 def rechazar_preinscripcion(request, pk):
     preinscripcion = PreinscripcionCurso.objects.get(pk = pk)
+    course = preinscripcion.curso
     preinscripcion.estatus = EstatusPreinscripcion.objects.get(pk=3)
     preinscripcion.save()
+    if not PreinscripcionCurso.objects.filter(curso=course, estatus_id=2).count() >= course.capacidad:
+        course.estatus = EstatusCursoOfertado.objects.get(pk=1)
+        course.save()
     return redirect('dashboard:lista_preinscripcion')

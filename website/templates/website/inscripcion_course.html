@@ -5,6 +5,12 @@
             <div class="col">
                 <h1>Requisitos</h1>
                 <h3>Pre-Inscripcion al curso de {{ course.curso.titulo }}</h3>
+                {% if message %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
                 <p>Favor de adjuntar los siguientes documentos, para completar su registro</p>
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}

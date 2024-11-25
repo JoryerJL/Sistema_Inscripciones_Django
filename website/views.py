@@ -1,4 +1,5 @@
 from lib2to3.fixes.fix_input import context
+from pyexpat.errors import messages
 
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
@@ -24,11 +25,10 @@ def detail_course(request, pk):
     if PreinscripcionCurso.objects.filter(prospecto=request.user, curso=curso_ofertado).exists():
         inscrito = True
 
-    course = CursoOfertado.objects.get(pk=1)
     context = {
         'inscrito': inscrito,
-        'course': course,
-        'title' : course.curso.titulo
+        'course': curso_ofertado,
+        'title' : curso_ofertado.curso.titulo
     }
     return render(request, 'website/detail_course.html', context)
 
@@ -53,18 +53,23 @@ def logout_view(request):
 def preinscripcion_alumno(request, pk):
     course = CursoOfertado.objects.get(pk=pk)
     form = PreInscripcionAlumnoCursoModelForm()
+    message = None
     if request.method == "POST":
         form = PreInscripcionAlumnoCursoModelForm(request.POST, request.FILES)
         if form.is_valid():
-            curso_temp = form.save(commit=False)
-            curso_temp.prospecto = request.user
-            curso_temp.curso = course
-            curso_temp.estatus_id = 1
-            curso_temp.save()
-            print('Preinscripcion guardada')
-            return redirect('website:index')
+            if not course.estatus_id == 4:
+                curso_temp = form.save(commit=False)
+                curso_temp.prospecto = request.user
+                curso_temp.curso = course
+                curso_temp.estatus_id = 1
+                curso_temp.save()
+                message = 'Pre-Inscripcion realizada correctamente'
+                return redirect('website:index')
+        else:
+            message = 'El curso ha alcanzado el limite de participantes'
 
     context = {
+        'message': message,
         'form': form,
         'title': 'Pre-Inscripcion - ' + course.curso.titulo,
         'course': course
